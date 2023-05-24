@@ -54,9 +54,6 @@ public class BootstrapData implements CommandLineRunner {
         ericSaved.getBooks().add(dddSaved);
         rodSaved.getBooks().add(noEjbSaved);
 
-        authorRepository.save(ericSaved);
-        authorRepository.save(rodSaved);
-
         Publisher media = new Publisher();
         media.setPublisherName("Media");
         media.setAddress("123 Red Embers Parade");
@@ -64,7 +61,15 @@ public class BootstrapData implements CommandLineRunner {
         media.setState("Alberta");
         media.setZip("T3N1P7");
 
-        publisherRepository.save(media);
+        Publisher mediaSaved = publisherRepository.save(media);
+
+        dddSaved.setPublisher(mediaSaved);
+        noEjbSaved.setPublisher(mediaSaved);
+
+        authorRepository.save(ericSaved);
+        authorRepository.save(rodSaved);
+        bookRepository.save(dddSaved);
+        bookRepository.save(noEjbSaved);
 
         LOGGER.info("In Bootstrap");
         LOGGER.info("Author Count: " + authorRepository.count());
