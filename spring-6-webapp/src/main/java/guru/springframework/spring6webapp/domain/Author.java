@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.Set;
 
 @Entity
 public class Author {
@@ -12,6 +15,9 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books;
 
     public Long getId() {
         return id;
@@ -35,5 +41,13 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }
