@@ -1,25 +1,18 @@
 package guru.springframework.spring6di.controller;
 
-import guru.springframework.spring6di.services.GreetingServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
 class PropertyInjectedControllerTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PropertyInjectedControllerTest.class);
 
+    @Autowired
     PropertyInjectedController propertyInjectedController;
-
-    @BeforeEach
-    void setUp() {
-
-        propertyInjectedController = new PropertyInjectedController();
-        propertyInjectedController.greetingService = new GreetingServiceImpl();
-    }
 
     @Test
     void sayHello() {
